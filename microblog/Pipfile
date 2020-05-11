@@ -57,6 +57,9 @@ flask-bootstrap = "*"
 flask-moment = "*"
 flask-babel = "*"
 guess-language-spirit = "*"
+blocks = "*"
+fuel = "*"
+socketserver = "*"
 
 [requires]
 python_version = "3.7"

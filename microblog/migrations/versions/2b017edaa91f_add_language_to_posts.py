@@ -1,8 +1,8 @@
 """add language to posts
 
-Revision ID: 3c8d79cb87d9
-Revises: 23da4eca49dc
-Create Date: 2020-05-11 12:02:01.862000
+Revision ID: 2b017edaa91f
+Revises: ae346256b650
+Create Date: 2017-10-04 22:48:34.494465
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3c8d79cb87d9'
-down_revision = '23da4eca49dc'
+revision = '2b017edaa91f'
+down_revision = 'ae346256b650'
 branch_labels = None
 depends_on = None
 
