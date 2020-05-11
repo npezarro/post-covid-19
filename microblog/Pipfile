@@ -53,6 +53,8 @@ WTForms = "*"
 zipp = "*"
 flask-mail = "*"
 jwt = "*"
+flask-bootstrap = "*"
+flask-moment = "*"
 
 [requires]
 python_version = "3.7"
