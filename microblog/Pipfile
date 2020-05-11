@@ -56,6 +56,7 @@ jwt = "*"
 flask-bootstrap = "*"
 flask-moment = "*"
 flask-babel = "*"
+guess-language-spirit = "*"
 
 [requires]
 python_version = "3.7"
