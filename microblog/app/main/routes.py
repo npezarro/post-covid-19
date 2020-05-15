@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from flask_babel import _, get_locale
 from guess_language import guess_language
 from app import db
-from app.main.forms import EditProfileForm, PostForm, SearchForm
+from app.main.forms import EditProfileForm, PostForm, SearchForm, LoggedOutPostForm
 from app.models import User, Post
 from app.translate import translate
 from app.main import bp
@@ -39,12 +39,20 @@ def explore():
 @bp.route('/home', methods=['GET', 'POST'])
 #@login_required
 def home():
-    form = PostForm()
+    if current_user.is_authenticated:
+        form = PostForm() 
+    else:
+        form = LoggedOutPostForm()
+    #if not current_user.is_authenticated:   
     if form.validate_on_submit():
         language = guess_language(form.post.data)
         if language == 'UNKNOWN' or len(language) > 5:
             language = ''
-        post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
+        if current_user.is_authenticated:
+            post = Post(body=form.post.data, author=current_user,
+                    language=language)
+        else:
+            post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
                     language=language)
         db.session.add(post)
         db.session.commit()
