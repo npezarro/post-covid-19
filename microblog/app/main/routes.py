@@ -36,7 +36,7 @@ def explore():
                            prev_url=prev_url)
 
 @bp.route('/', methods=['GET', 'POST'])
-@bp.route('/home')
+@bp.route('/home', methods=['GET', 'POST'])
 #@login_required
 def home():
     form = PostForm()
@@ -44,7 +44,7 @@ def home():
         language = guess_language(form.post.data)
         if language == 'UNKNOWN' or len(language) > 5:
             language = ''
-        post = Post(body=form.post.data, author='anonymous',
+        post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
                     language=language)
         db.session.add(post)
         db.session.commit()
