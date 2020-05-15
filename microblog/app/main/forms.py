@@ -24,6 +24,8 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
+    
+    username = StringField(_l('Username'), validators=[DataRequired()])
     post = TextAreaField(_l('Say something'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 

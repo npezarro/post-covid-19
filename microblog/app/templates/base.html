@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Microblog{% else %}{{ _('Welcome to Microblog') }}{% endif %}
+    {% if title %}{{ title }} - Post COVID-19{% else %}{{ _('Welcome to Post COVID-19') }}{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -14,11 +14,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Microblog</a>
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">Post COVID-19</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
+                    <li><a href="{{ url_for('main.home') }}">{{ _('Home') }}</a></li>
                     <li><a href="{{ url_for('main.explore') }}">{{ _('Explore') }}</a></li>
                 </ul>
                 {% if g.search_form %}
