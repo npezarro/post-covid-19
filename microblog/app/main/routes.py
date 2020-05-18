@@ -111,6 +111,9 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.age = form.age.data
+        current_user.gender = form.gender.data
+        current_user.location = form.location.data
         db.session.commit()
         flash(_('Your changes have been saved.'))
         return redirect(url_for('main.edit_profile'))

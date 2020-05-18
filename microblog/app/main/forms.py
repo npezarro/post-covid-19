@@ -8,8 +8,10 @@ from app.models import User
 
 class EditProfileForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
-    about_me = TextAreaField(_l('About me'),
-                             validators=[Length(min=0, max=140)])
+    about_me = TextAreaField(_l('About me'), validators=[Length(min=0, max=140)])
+    age = TextAreaField(_l('Age'), validators=[Length(min=0, max=3)])
+    gender = TextAreaField(_l('Gender'), validators=[Length(min=0, max=50)])
+    location = TextAreaField(_l('Location'), validators=[Length(min=0, max=100)])
     submit = SubmitField(_l('Submit'))
 
     def __init__(self, original_username, *args, **kwargs):
