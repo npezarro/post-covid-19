@@ -24,7 +24,7 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField(_l('Say something'), validators=[DataRequired()])
+    post = TextAreaField(_l('What are you planning to do when COVID-19 ends? When do you think it will end?'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 
 
