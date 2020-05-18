@@ -41,9 +41,9 @@ class SearchForm(FlaskForm):
 class LoggedOutPostForm(FlaskForm):
 
     username = StringField(_l('Username'), validators=[DataRequired()])
-    post = TextAreaField(_l('Say something'), validators=[DataRequired()])
     email = StringField(_l('Email'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
+    post = TextAreaField(_l('What are you planning to do when COVID-19 ends? When do you think it will end?'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 
     def validate_username(self, username):
