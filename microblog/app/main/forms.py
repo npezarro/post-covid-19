@@ -9,9 +9,9 @@ from app.models import User
 class EditProfileForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
     about_me = TextAreaField(_l('About me'), validators=[Length(min=0, max=140)])
-    age = TextAreaField(_l('Age'), validators=[Length(min=0, max=3)])
-    gender = TextAreaField(_l('Gender'), validators=[Length(min=0, max=50)])
-    location = TextAreaField(_l('Location'), validators=[Length(min=0, max=100)])
+    age = StringField(_l('Age'), validators=[Length(min=0, max=3)])
+    gender = StringField(_l('Gender'), validators=[Length(min=0, max=50)])
+    location = StringField(_l('Location'), validators=[Length(min=0, max=100)])
     submit = SubmitField(_l('Submit'))
 
     def __init__(self, original_username, *args, **kwargs):
@@ -46,6 +46,9 @@ class LoggedOutPostForm(FlaskForm):
     email = StringField(_l('Email'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
     post = TextAreaField(_l('What are you planning to do when COVID-19 ends? When do you think it will end?'), validators=[DataRequired()])
+    age = StringField(_l('Optional: Age'), validators=[Length(min=0, max=3)])
+    gender = StringField(_l('Optional: Gender'), validators=[Length(min=0, max=50)])
+    location = StringField(_l('Optional: Location'), validators=[Length(min=0, max=100)])
     submit = SubmitField(_l('Submit'))
 
     def validate_username(self, username):

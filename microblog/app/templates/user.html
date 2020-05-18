@@ -7,9 +7,9 @@
             <td>
                 <h1>{{ _('User') }}: {{ user.username }}</h1>
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.age %}<p>{{ user.age }}</p>{% endif %}
-                {% if user.gender %}<p>{{ user.gender }}</p>{% endif %}
-                {% if user.location %}<p>{{ user.location }}</p>{% endif %}
+                {% if user.age %}<p>Age: {{ user.age }}</p>{% endif %}
+                {% if user.gender %}<p>Gender: {{ user.gender }}</p>{% endif %}
+                {% if user.location %}<p>Location: {{ user.location }}</p>{% endif %}
                 {% if user.last_seen %}
                 <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).format('LLL') }}</p>
                 {% endif %}
