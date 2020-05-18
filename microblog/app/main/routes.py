@@ -42,22 +42,35 @@ def home():
     if current_user.is_authenticated:
         form = PostForm() 
     else:
-        form = LoggedOutPostForm()
-    #if not current_user.is_authenticated:   
+        form = LoggedOutPostForm() 
     if form.validate_on_submit():
-        language = guess_language(form.post.data)
-        if language == 'UNKNOWN' or len(language) > 5:
-            language = ''
         if current_user.is_authenticated:
-            post = Post(body=form.post.data, author=current_user,
-                    language=language)
+            language = guess_language(form.post.data)
+            if language == 'UNKNOWN' or len(language) > 5:
+                language = ''
+            if current_user.is_authenticated:
+                post = Post(body=form.post.data, author=current_user,
+                        language=language)
+#            else:
+#                post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
+#                        language=language)
+            db.session.add(post)
+            db.session.commit()
+            flash(_('Your post is now live!'))
+            return redirect(url_for('main.home'))
         else:
-            post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
-                    language=language)
-        db.session.add(post)
-        db.session.commit()
-        flash(_('Your post is now live!'))
-        return redirect(url_for('main.home'))
+            language = guess_language(form.post.data)
+            if language == 'UNKNOWN' or len(language) > 5:
+                language = ''
+            if form.validate_on_submit():
+                user = User(username=form.username.data, email=form.email.data)
+                user.set_password(form.password.data)
+                db.session.add(user)
+                db.session.commit()
+                post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(), language=language)
+                db.session.add(post)
+                db.session.commit()
+                flash(_('Your post is now live! Your account is also registered. Login to view your profile and make additional posts.'))       
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
