@@ -70,7 +70,7 @@ def home():
                 post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(), language=language)
                 db.session.add(post)
                 db.session.commit()
-                flash(_('Your post is now live! Your account is also registered. Login to view your profile and make additional posts.'))       
+                flash(_('Your post is live! Your account is also registered. Login to view your profile and make additional posts.'))       
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
