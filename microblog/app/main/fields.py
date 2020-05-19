@@ -11,7 +11,7 @@ class NullableDateField(DateField):
                 self.data = None
                 return
             try:
-                self.data = datetime.datetime.strptime(date_str, self.format).date()
+                self.data = datetime.strptime(date_str, self.format).date()
             except ValueError:
                 self.data = None
                 raise ValueError(self.gettext('Not a valid date value'))
