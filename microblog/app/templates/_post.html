@@ -16,7 +16,7 @@
             {{ _('%(username)s said %(when)s',
                 username=user_link, when=moment(post.timestamp).fromNow()) }}
             <br>
-            <span id="post{{ post.id }}">{{ post.body }}{% if post.date_guess %}<p>I think restrictions will end on {{ post.date_guess }}</p>{% endif %}</span>
+            <span id="post{{ post.id }}">{{ post.body }}{% if post.date_guess %}<p><br>I think restrictions will end on {{ post.date_guess }}</p>{% endif %}</span>
             {% if post.language and post.language != g.locale %}
             <br><br>
             <span id="translation{{ post.id }}">
