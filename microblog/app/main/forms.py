@@ -1,6 +1,7 @@
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, PasswordField, BooleanField
+from wtforms import  StringField, SubmitField, TextAreaField, PasswordField, BooleanField
+from app.main.fields import NullableDateField
 from wtforms.validators import ValidationError, DataRequired, Length, Email, EqualTo
 from flask_babel import _, lazy_gettext as _l
 from app.models import User
@@ -26,9 +27,9 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField(_l('What are you planning to do when COVID-19 ends? When do you think it will end?'), validators=[DataRequired()])
+    post = TextAreaField(_l('What are you planning to do when COVID-19 ends?'), validators=[DataRequired()])
+    date_guess = NullableDateField('Optional: When do you think restrictions will end?', format='%Y-%m-%d')
     submit = SubmitField(_l('Submit'))
-
 
 class SearchForm(FlaskForm):
     q = StringField(_l('Search'), validators=[DataRequired()])
@@ -45,7 +46,8 @@ class LoggedOutPostForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
     email = StringField(_l('Email'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
-    post = TextAreaField(_l('What are you planning to do when COVID-19 ends? When do you think it will end?'), validators=[DataRequired()])
+    post = TextAreaField(_l('What are you planning to do when COVID-19 ends?'), validators=[DataRequired()])
+    date_guess = NullableDateField('Optional: When do you think restrictions will end?', format='%Y-%m-%d')
     age = StringField(_l('Optional: Age'), validators=[Length(min=0, max=3)])
     gender = StringField(_l('Optional: Gender'), validators=[Length(min=0, max=50)])
     location = StringField(_l('Optional: Location'), validators=[Length(min=0, max=100)])

@@ -49,11 +49,7 @@ def home():
             if language == 'UNKNOWN' or len(language) > 5:
                 language = ''
             if current_user.is_authenticated:
-                post = Post(body=form.post.data, author=current_user,
-                        language=language)
-#            else:
-#                post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(),
-#                        language=language)
+                post = Post(body=form.post.data, author=current_user, language=language, date_guess=form.date_guess.data)
             db.session.add(post)
             db.session.commit()
             flash(_('Your post is now live!'))
@@ -67,7 +63,7 @@ def home():
                 user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()
-                post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(), language=language)
+                post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(), language=language, date_guess=form.date_guess.data)
                 db.session.add(post)
                 db.session.commit()
                 flash(_('Your post is live! Your account is also registered. Login to view your profile and make additional posts.'))       
