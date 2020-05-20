@@ -59,8 +59,9 @@ def home():
             if language == 'UNKNOWN' or len(language) > 5:
                 language = ''
             if form.validate_on_submit():
-                user = User(username=form.username.data, email=form.email.data, age=form.age.data, gender=form.gender.data, location=form.location.data)
-                user.set_password(form.password.data)
+                #user = User(username=form.username.data, email=form.email.data, age=form.age.data, gender=form.gender.data, location=form.location.data)
+                user = User(username=form.username.data, age=form.age.data, gender=form.gender.data, location=form.location.data)
+                #user.set_password(form.password.data)
                 db.session.add(user)
                 db.session.commit()
                 post = Post(body=form.post.data, author=User.query.filter_by(username=form.username.data).first(), language=language, date_guess=form.date_guess.data)

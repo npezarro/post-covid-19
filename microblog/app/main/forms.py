@@ -44,8 +44,8 @@ class SearchForm(FlaskForm):
 class LoggedOutPostForm(FlaskForm):
 
     username = StringField(_l('Username'), validators=[DataRequired()])
-    email = StringField(_l('Email'), validators=[DataRequired(), Email()])
-    password = PasswordField(_l('Password'), validators=[DataRequired()])
+    #email = StringField(_l('Email'), validators=[DataRequired(), Email()])
+    #password = PasswordField(_l('Password'), validators=[DataRequired()])
     post = TextAreaField(_l('What are you planning to do when COVID-19 ends?'), validators=[DataRequired()])
     date_guess = NullableDateField('Optional: When do you think restrictions will end?', format='%Y-%m-%d')
     age = StringField(_l('Optional: Age'), validators=[Length(min=0, max=3)])
@@ -58,7 +58,7 @@ class LoggedOutPostForm(FlaskForm):
         if user is not None:
             raise ValidationError(_('Please use a different username.'))
 
-    def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError(_('Please use a different email address.'))
+    #def validate_email(self, email):
+    #    user = User.query.filter_by(email=email.data).first()
+     #   if user is not None:
+    #        raise ValidationError(_('Please use a different email address.'))
