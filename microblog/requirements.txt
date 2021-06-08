@@ -39,7 +39,7 @@ mccabe==0.6.1
 numexpr==2.7.1
 numpy==1.18.4
 picklable-itertools==0.1.1
-Pillow==7.1.2
+Pillow==8.2.0
 pipenv==2018.11.26
 progressbar2==3.51.3
 psycopg2==2.8.5
